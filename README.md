@@ -1,2 +1,2 @@
-# exam-nextjs
+# exam_nextjs
 exam project
