@@ -1,3 +1,4 @@
+//frontend/src/components/backgroundImg.js
 import React, { useState } from 'react';
 import Image from 'next/image';
 
@@ -14,9 +15,11 @@ function Img() {
                 src="hotel.jpg"
                 alt='background Picture'
                 width={500}
-                height={333}
+                height={500}
                 onLoad={handleLoadingComplete}
                 className="lazy-loaded-image"
+                loaded="eager"
+
             />
         </div>
     )
