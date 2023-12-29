@@ -9,7 +9,7 @@ function Img() {
     };
 
     return (
-        <div className={loaded ? 'img-container loaded' : 'img-container'}>
+        <div className={loaded ? 'img-container loaded back' : 'img-container back'}>
             <Image
                 src="hotel.jpg"
                 alt='background Picture'

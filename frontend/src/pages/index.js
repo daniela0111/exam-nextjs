@@ -2,6 +2,7 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import BookingForm from '../components/BookingForm';
+import Img from '../components/Img';
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Navbar />
       <main>
         <BookingForm />
+        <Img />
       </main>
     </>
   );
