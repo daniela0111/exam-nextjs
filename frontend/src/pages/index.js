@@ -15,8 +15,8 @@ const Home = () => {
       </Head>
       <Navbar />
       <main>
-        <BookingForm />
         <Img />
+        <BookingForm />
       </main>
     </>
   );
