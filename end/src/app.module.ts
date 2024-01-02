@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { FormService } from './form.service';
 import { FormMiddleware } from './middleware/form.middleware';
 import { ReservationService } from './reservation/reservation.service';
-import { ReservationData } from './models/reservation.model';
+import { ReservationData } from './reservation/reservation.model';
 
 @Controller()
 export class AppController {
