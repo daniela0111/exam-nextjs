@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import BookingForm from '../components/BookingForm';
 import Img from '../components/Img';
+import Footer from '../components/Footer';
+
 
 const Home = () => {
   return (
@@ -17,6 +19,7 @@ const Home = () => {
       <main>
         <Img />
         <BookingForm />
+        <Footer />
       </main>
     </>
   );
