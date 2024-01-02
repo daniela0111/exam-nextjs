@@ -1,11 +1,4 @@
 "use strict";
-var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
-    var useValue = arguments.length > 2;
-    for (var i = 0; i < initializers.length; i++) {
-        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-    }
-    return useValue ? value : void 0;
-};
 var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
     function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
     var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
@@ -33,41 +26,46 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
     if (target) Object.defineProperty(target, contextIn.name, descriptor);
     done = true;
 };
+var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
 var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
     if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppController = void 0;
-// app.controller.ts
+exports.FormService = void 0;
+// form.service.ts
 var common_1 = require("@nestjs/common");
-var AppController = function () {
-    var _classDecorators = [(0, common_1.Controller)()];
+var FormService = function () {
+    var _classDecorators = [(0, common_1.Injectable)()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var _instanceExtraInitializers = [];
-    var _getHello_decorators;
-    var AppController = _classThis = /** @class */ (function () {
-        function AppController_1(appService, reservationModel) {
-            this.appService = (__runInitializers(this, _instanceExtraInitializers), appService);
-            this.reservationModel = reservationModel;
+    var FormService = _classThis = /** @class */ (function () {
+        function FormService_1() {
         }
-        AppController_1.prototype.getHello = function () {
-            return this.appService.getHello();
+        FormService_1.prototype.processForm = function (data) {
+            // Perform operations with the data here
+            // For example, you can call other services, save data to the database, etc.
+            console.log('Processing form data:', data);
+            // Return the processed data
+            return data;
         };
-        return AppController_1;
+        return FormService_1;
     }());
-    __setFunctionName(_classThis, "AppController");
+    __setFunctionName(_classThis, "FormService");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        _getHello_decorators = [(0, common_1.Get)()];
-        __esDecorate(_classThis, null, _getHello_decorators, { kind: "method", name: "getHello", static: false, private: false, access: { has: function (obj) { return "getHello" in obj; }, get: function (obj) { return obj.getHello; } }, metadata: _metadata }, null, _instanceExtraInitializers);
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        AppController = _classThis = _classDescriptor.value;
+        FormService = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return AppController = _classThis;
+    return FormService = _classThis;
 }();
-exports.AppController = AppController;
+exports.FormService = FormService;

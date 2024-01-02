@@ -1,16 +1,35 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { Body, Controller, Get, Injectable, Post, Use } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ReservationController } from './reservation/reservation.controller';
-import { ReservationMiddleware } from './middleware/reservation.middleware';
+import { FormService } from './form.service';
+import { FormMiddleware } from './middleware/form.middleware';
+import { ReservationService } from './reservation/reservation.service';
+import { ReservationData } from './models/reservation.model';
 
-@Module({
-  imports: [],
-  controllers: [AppController, ReservationController],
-  providers: [AppService],
-})
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ReservationMiddleware).forRoutes('reservation/book');
-  }
+@Controller()
+export class AppController {
+ constructor(private readonly appService: AppService) {}
+
+ @Get()
+ getHello(): string {
+    return this.appService.getHello();
+ }
 }
+
+@Injectable()
+export class AppService {
+ getHello(): string {
+    return 'Hello World!';
+ }
+}
+
+@Injectable()
+export class FormService {
+ // ...
+}
+
+@Injectable()
+export class ReservationService {
+ // ...
+}
+
+// Other services, controllers, etc. should also have the correct imports and decorators.

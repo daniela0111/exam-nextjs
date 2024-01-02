@@ -69,50 +69,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
-    if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-    return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReservationController = void 0;
-// reservation.controller.ts
-var common_1 = require("@nestjs/common");
-var ReservationController = function () {
-    var _classDecorators = [(0, common_1.Controller)('reservation')];
-    var _classDescriptor;
-    var _classExtraInitializers = [];
-    var _classThis;
+exports.FormController = void 0;
+// form.controller.ts
+var form_middleware_1 = require("./form.middleware");
+// ...
+var FormController = function () {
+    var _a;
     var _instanceExtraInitializers = [];
-    var _bookHotel_decorators;
-    var ReservationController = _classThis = /** @class */ (function () {
-        function ReservationController_1(reservationService) {
-            this.reservationService = (__runInitializers(this, _instanceExtraInitializers), reservationService);
-        }
-        ReservationController_1.prototype.bookHotel = function (reservationData) {
-            return __awaiter(this, void 0, void 0, function () {
-                var bookingMessage;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.reservationService.bookHotel(reservationData)];
-                        case 1:
-                            bookingMessage = _a.sent();
-                            return [2 /*return*/, { message: bookingMessage }];
-                    }
+    var _submitForm_decorators;
+    return _a = /** @class */ (function () {
+            function FormController(formService) {
+                this.formService = (__runInitializers(this, _instanceExtraInitializers), formService);
+            }
+            FormController.prototype.submitForm = function (data) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var processedData;
+                    return __generator(this, function (_b) {
+                        switch (_b.label) {
+                            case 0: return [4 /*yield*/, this.formService.processForm(data)];
+                            case 1:
+                                processedData = _b.sent();
+                                return [2 /*return*/, processedData];
+                        }
+                    });
                 });
-            });
-        };
-        return ReservationController_1;
-    }());
-    __setFunctionName(_classThis, "ReservationController");
-    (function () {
-        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        _bookHotel_decorators = [(0, common_1.Post)('book')];
-        __esDecorate(_classThis, null, _bookHotel_decorators, { kind: "method", name: "bookHotel", static: false, private: false, access: { has: function (obj) { return "bookHotel" in obj; }, get: function (obj) { return obj.bookHotel; } }, metadata: _metadata }, null, _instanceExtraInitializers);
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        ReservationController = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return ReservationController = _classThis;
+            };
+            return FormController;
+        }()),
+        (function () {
+            var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+            _submitForm_decorators = [Post(), Use(form_middleware_1.FormMiddleware)];
+            __esDecorate(_a, null, _submitForm_decorators, { kind: "method", name: "submitForm", static: false, private: false, access: { has: function (obj) { return "submitForm" in obj; }, get: function (obj) { return obj.submitForm; } }, metadata: _metadata }, null, _instanceExtraInitializers);
+            if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        })(),
+        _a;
 }();
-exports.ReservationController = ReservationController;
+exports.FormController = FormController;

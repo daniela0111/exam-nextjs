@@ -1,4 +1,11 @@
 "use strict";
+var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
 var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
     function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
     var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
@@ -26,49 +33,106 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
     if (target) Object.defineProperty(target, contextIn.name, descriptor);
     done = true;
 };
-var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
-    var useValue = arguments.length > 2;
-    for (var i = 0; i < initializers.length; i++) {
-        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-    }
-    return useValue ? value : void 0;
-};
 var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
     if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.ReservationService = exports.FormService = exports.AppService = exports.AppController = void 0;
 var common_1 = require("@nestjs/common");
-var app_controller_1 = require("./app.controller");
-var app_service_1 = require("./app.service");
-var reservation_controller_1 = require("./reservation/reservation.controller");
-var reservation_middleware_1 = require("./middleware/reservation.middleware");
-var AppModule = function () {
-    var _classDecorators = [(0, common_1.Module)({
-            imports: [],
-            controllers: [app_controller_1.AppController, reservation_controller_1.ReservationController],
-            providers: [app_service_1.AppService],
-        })];
+var AppController = function () {
+    var _classDecorators = [(0, common_1.Controller)()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var AppModule = _classThis = /** @class */ (function () {
-        function AppModule_1() {
+    var _instanceExtraInitializers = [];
+    var _getHello_decorators;
+    var AppController = _classThis = /** @class */ (function () {
+        function AppController_1(appService) {
+            this.appService = (__runInitializers(this, _instanceExtraInitializers), appService);
         }
-        AppModule_1.prototype.configure = function (consumer) {
-            consumer.apply(reservation_middleware_1.ReservationMiddleware).forRoutes('reservation/book');
+        AppController_1.prototype.getHello = function () {
+            return this.appService.getHello();
         };
-        return AppModule_1;
+        return AppController_1;
     }());
-    __setFunctionName(_classThis, "AppModule");
+    __setFunctionName(_classThis, "AppController");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+        _getHello_decorators = [(0, common_1.Get)()];
+        __esDecorate(_classThis, null, _getHello_decorators, { kind: "method", name: "getHello", static: false, private: false, access: { has: function (obj) { return "getHello" in obj; }, get: function (obj) { return obj.getHello; } }, metadata: _metadata }, null, _instanceExtraInitializers);
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        AppModule = _classThis = _classDescriptor.value;
+        AppController = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return AppModule = _classThis;
+    return AppController = _classThis;
 }();
-exports.AppModule = AppModule;
+exports.AppController = AppController;
+var AppService = function () {
+    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDescriptor;
+    var _classExtraInitializers = [];
+    var _classThis;
+    var AppService = _classThis = /** @class */ (function () {
+        function AppService_1() {
+        }
+        AppService_1.prototype.getHello = function () {
+            return 'Hello World!';
+        };
+        return AppService_1;
+    }());
+    __setFunctionName(_classThis, "AppService");
+    (function () {
+        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
+        AppService = _classThis = _classDescriptor.value;
+        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        __runInitializers(_classThis, _classExtraInitializers);
+    })();
+    return AppService = _classThis;
+}();
+exports.AppService = AppService;
+var FormService = function () {
+    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDescriptor;
+    var _classExtraInitializers = [];
+    var _classThis;
+    var FormService = _classThis = /** @class */ (function () {
+        function FormService_1() {
+        }
+        return FormService_1;
+    }());
+    __setFunctionName(_classThis, "FormService");
+    (function () {
+        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
+        FormService = _classThis = _classDescriptor.value;
+        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        __runInitializers(_classThis, _classExtraInitializers);
+    })();
+    return FormService = _classThis;
+}();
+exports.FormService = FormService;
+var ReservationService = function () {
+    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDescriptor;
+    var _classExtraInitializers = [];
+    var _classThis;
+    var ReservationService = _classThis = /** @class */ (function () {
+        function ReservationService_1() {
+        }
+        return ReservationService_1;
+    }());
+    __setFunctionName(_classThis, "ReservationService");
+    (function () {
+        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
+        ReservationService = _classThis = _classDescriptor.value;
+        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        __runInitializers(_classThis, _classExtraInitializers);
+    })();
+    return ReservationService = _classThis;
+}();
+exports.ReservationService = ReservationService;
+// Other services, controllers, etc. should also have the correct imports and decorators.
