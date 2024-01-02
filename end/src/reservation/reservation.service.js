@@ -1,11 +1,4 @@
 "use strict";
-var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
-    var useValue = arguments.length > 2;
-    for (var i = 0; i < initializers.length; i++) {
-        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-    }
-    return useValue ? value : void 0;
-};
 var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
     function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
     var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
@@ -32,6 +25,13 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
     }
     if (target) Object.defineProperty(target, contextIn.name, descriptor);
     done = true;
+};
+var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -74,45 +74,37 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReservationController = void 0;
-// reservation.controller.ts
+exports.ReservationService = void 0;
+// reservation.service.ts
 var common_1 = require("@nestjs/common");
-var ReservationController = function () {
-    var _classDecorators = [(0, common_1.Controller)('reservation')];
+var ReservationService = function () {
+    var _classDecorators = [(0, common_1.Injectable)()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var _instanceExtraInitializers = [];
-    var _bookHotel_decorators;
-    var ReservationController = _classThis = /** @class */ (function () {
-        function ReservationController_1(reservationService) {
-            this.reservationService = (__runInitializers(this, _instanceExtraInitializers), reservationService);
+    var ReservationService = _classThis = /** @class */ (function () {
+        function ReservationService_1() {
         }
-        ReservationController_1.prototype.bookHotel = function (reservationData) {
+        ReservationService_1.prototype.bookHotel = function (reservationData) {
             return __awaiter(this, void 0, void 0, function () {
-                var bookingMessage;
                 return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.reservationService.bookHotel(reservationData)];
-                        case 1:
-                            bookingMessage = _a.sent();
-                            return [2 /*return*/, { message: bookingMessage }];
-                    }
+                    // ...
+                    // Add your logic to book the hotel
+                    // ...
+                    return [2 /*return*/, 'Your hotel has been booked successfully!'];
                 });
             });
         };
-        return ReservationController_1;
+        return ReservationService_1;
     }());
-    __setFunctionName(_classThis, "ReservationController");
+    __setFunctionName(_classThis, "ReservationService");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        _bookHotel_decorators = [(0, common_1.Post)('book')];
-        __esDecorate(_classThis, null, _bookHotel_decorators, { kind: "method", name: "bookHotel", static: false, private: false, access: { has: function (obj) { return "bookHotel" in obj; }, get: function (obj) { return obj.bookHotel; } }, metadata: _metadata }, null, _instanceExtraInitializers);
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        ReservationController = _classThis = _classDescriptor.value;
+        ReservationService = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return ReservationController = _classThis;
+    return ReservationService = _classThis;
 }();
-exports.ReservationController = ReservationController;
+exports.ReservationService = ReservationService;

@@ -1,31 +1,15 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import ReservationModel from './reservation.model';
+// reservation.controller.ts
+import { Body, Controller, Post } from '@nestjs/common';
+import { ReservationService } from './reservation.service';
+import { ReservationData } from './reservation.interface';
 
 @Controller('reservation')
 export class ReservationController {
-  @Post('book')
-  async bookHotel(@Body() reservationData: ReservationData): Promise<string> {
-    try {
-      // Vytvoření nové rezervace v MongoDB pomocí Mongoose modelu
-      const reservation = new ReservationModel(reservationData);
-      await reservation.save();
+ constructor(private readonly reservationService: ReservationService) {}
 
-      // Zpracování rezervace - vložte další logiku zpracování zde
-
-      // V tomto příkladu vrátíme jednoduchou odpověď
-      return `Reservation on nane ${reservationData.name} in hotel ${reservationData.hotelChoice} ${reservationData.rooms} was completed`;
-    } catch (error) {
-      console.error(error);
-      return 'Something went wrong';
-    }
-  }
-}
-
-// Definujeme typ pro data rezervace
-interface ReservationData {
-  hotelChoice: string;
-  name: string;
-  rooms: number;
-  checkIn: Date;
-  checkOut: Date;
+ @Post('book')
+ async bookHotel(@Body() reservationData: ReservationData): Promise<{message: string}> {
+    const bookingMessage = await this.reservationService.bookHotel(reservationData);
+    return { message: bookingMessage };
+ }
 }
