@@ -21,6 +21,9 @@ const Footer = () => {
       gridGap="16"
       alignItems="start"
       className={FooterStyle.footerStyle}
+      position="absolute"
+      bottom="0"
+      width="100%"
     >
       <Box>
         <Link href="/" fontSize="lg" fontWeight="bold" color="white">
