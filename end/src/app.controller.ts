@@ -4,11 +4,12 @@ import { AppService } from './app.service';
 import { ReservationModel } from './reservation/reservation.model';
 
 @Controller()
-export class AppController {
- constructor(private readonly appService: AppService, private readonly reservationModel: ReservationModel) {}
+import { Controller, Get } from '@nestjs/common';
 
- @Get()
- getHello(): string {
-    return this.appService.getHello();
- }
+@Controller()
+export class AppController {
+  @Get()
+  getHello(): string {
+    return 'Hello World!';
+  }
 }

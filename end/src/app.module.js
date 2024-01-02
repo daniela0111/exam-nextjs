@@ -40,6 +40,8 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReservationService = exports.FormService = exports.AppService = exports.AppController = void 0;
 var common_1 = require("@nestjs/common");
+var common_2 = require("@nestjs/common");
+var common_3 = require("@nestjs/common");
 var AppController = function () {
     var _classDecorators = [(0, common_1.Controller)()];
     var _classDescriptor;
@@ -47,6 +49,7 @@ var AppController = function () {
     var _classThis;
     var _instanceExtraInitializers = [];
     var _getHello_decorators;
+    var _submitForm_decorators;
     var AppController = _classThis = /** @class */ (function () {
         function AppController_1(appService) {
             this.appService = (__runInitializers(this, _instanceExtraInitializers), appService);
@@ -54,13 +57,19 @@ var AppController = function () {
         AppController_1.prototype.getHello = function () {
             return this.appService.getHello();
         };
+        AppController_1.prototype.submitForm = function (data) {
+            // ...
+            return 'Form submitted successfully';
+        };
         return AppController_1;
     }());
     __setFunctionName(_classThis, "AppController");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
         _getHello_decorators = [(0, common_1.Get)()];
+        _submitForm_decorators = [(0, common_1.Post)('form'), (0, common_2.UsePipes)(common_3.ValidationPipe)];
         __esDecorate(_classThis, null, _getHello_decorators, { kind: "method", name: "getHello", static: false, private: false, access: { has: function (obj) { return "getHello" in obj; }, get: function (obj) { return obj.getHello; } }, metadata: _metadata }, null, _instanceExtraInitializers);
+        __esDecorate(_classThis, null, _submitForm_decorators, { kind: "method", name: "submitForm", static: false, private: false, access: { has: function (obj) { return "submitForm" in obj; }, get: function (obj) { return obj.submitForm; } }, metadata: _metadata }, null, _instanceExtraInitializers);
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
         AppController = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
@@ -70,7 +79,7 @@ var AppController = function () {
 }();
 exports.AppController = AppController;
 var AppService = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDecorators = [Injectable()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
@@ -94,7 +103,7 @@ var AppService = function () {
 }();
 exports.AppService = AppService;
 var FormService = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDecorators = [Injectable()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
@@ -115,7 +124,7 @@ var FormService = function () {
 }();
 exports.FormService = FormService;
 var ReservationService = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
+    var _classDecorators = [Injectable()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
