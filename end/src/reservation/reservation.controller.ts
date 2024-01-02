@@ -13,10 +13,10 @@ export class ReservationController {
       // Zpracování rezervace - vložte další logiku zpracování zde
 
       // V tomto příkladu vrátíme jednoduchou odpověď
-      return `Rezervace pro ${reservationData.name} v hotelu ${reservationData.hotelChoice} na ${reservationData.rooms} místnost(i) byla úspěšně provedena!`;
+      return `Reservation on nane ${reservationData.name} in hotel ${reservationData.hotelChoice} ${reservationData.rooms} was completed`;
     } catch (error) {
       console.error(error);
-      return 'Něco se pokazilo při rezervaci.';
+      return 'Something went wrong';
     }
   }
 }
