@@ -39,6 +39,7 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
+// app.controller.ts
 var common_1 = require("@nestjs/common");
 var AppController = function () {
     var _classDecorators = [(0, common_1.Controller)()];
