@@ -38,7 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@nestjs/core");
 var app_module_1 = require("./app.module");
-require("reflect-metadata");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function () {
         var app;
@@ -47,6 +46,7 @@ function bootstrap() {
                 case 0: return [4 /*yield*/, core_1.NestFactory.create(app_module_1.AppModule)];
                 case 1:
                     app = _a.sent();
+                    app.enableCors();
                     return [4 /*yield*/, app.listen(3002)];
                 case 2:
                     _a.sent();

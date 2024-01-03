@@ -1,5 +1,11 @@
 "use strict";
-// src/middleware/reservation.middleware.ts
+var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
 var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
     function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
     var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
@@ -27,42 +33,52 @@ var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, 
     if (target) Object.defineProperty(target, contextIn.name, descriptor);
     done = true;
 };
-var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
-    var useValue = arguments.length > 2;
-    for (var i = 0; i < initializers.length; i++) {
-        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-    }
-    return useValue ? value : void 0;
-};
 var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
     if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReservationMiddleware = void 0;
+exports.AuthController = void 0;
 var common_1 = require("@nestjs/common");
-var ReservationMiddleware = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
+var passport_1 = require("@nestjs/passport");
+var AuthController = function () {
+    var _classDecorators = [(0, common_1.Controller)('auth')];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var ReservationMiddleware = _classThis = /** @class */ (function () {
-        function ReservationMiddleware_1() {
+    var _instanceExtraInitializers = [];
+    var _signUp_decorators;
+    var _login_decorators;
+    var _logout_decorators;
+    var AuthController = _classThis = /** @class */ (function () {
+        function AuthController_1(authService) {
+            this.authService = (__runInitializers(this, _instanceExtraInitializers), authService);
         }
-        ReservationMiddleware_1.prototype.use = function (req, res, next) {
-            console.log('Reservation Middleware Triggered');
-            next();
+        AuthController_1.prototype.signUp = function (signUpDto) {
+            return this.authService.signUp(signUpDto);
         };
-        return ReservationMiddleware_1;
+        AuthController_1.prototype.login = function (loginDto) {
+            return this.authService.login(loginDto);
+        };
+        AuthController_1.prototype.logout = function (authorization, response) {
+            return this.authService.logOut(authorization, response);
+        };
+        return AuthController_1;
     }());
-    __setFunctionName(_classThis, "ReservationMiddleware");
+    __setFunctionName(_classThis, "AuthController");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+        _signUp_decorators = [(0, common_1.Post)('/signup')];
+        _login_decorators = [(0, common_1.Get)('login')];
+        _logout_decorators = [(0, common_1.Post)('logout'), (0, common_1.UseGuards)((0, passport_1.AuthGuard)())];
+        __esDecorate(_classThis, null, _signUp_decorators, { kind: "method", name: "signUp", static: false, private: false, access: { has: function (obj) { return "signUp" in obj; }, get: function (obj) { return obj.signUp; } }, metadata: _metadata }, null, _instanceExtraInitializers);
+        __esDecorate(_classThis, null, _login_decorators, { kind: "method", name: "login", static: false, private: false, access: { has: function (obj) { return "login" in obj; }, get: function (obj) { return obj.login; } }, metadata: _metadata }, null, _instanceExtraInitializers);
+        __esDecorate(_classThis, null, _logout_decorators, { kind: "method", name: "logout", static: false, private: false, access: { has: function (obj) { return "logout" in obj; }, get: function (obj) { return obj.logout; } }, metadata: _metadata }, null, _instanceExtraInitializers);
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        ReservationMiddleware = _classThis = _classDescriptor.value;
+        AuthController = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return ReservationMiddleware = _classThis;
+    return AuthController = _classThis;
 }();
-exports.ReservationMiddleware = ReservationMiddleware;
+exports.AuthController = AuthController;

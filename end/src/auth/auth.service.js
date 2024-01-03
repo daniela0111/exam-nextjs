@@ -74,37 +74,81 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReservationService = void 0;
-// reservation.service.ts
+exports.AuthService = void 0;
 var common_1 = require("@nestjs/common");
-var ReservationService = function () {
+var bcrypt = require("bcryptjs");
+var AuthService = function () {
     var _classDecorators = [(0, common_1.Injectable)()];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var ReservationService = _classThis = /** @class */ (function () {
-        function ReservationService_1() {
+    var AuthService = _classThis = /** @class */ (function () {
+        function AuthService_1(userModel, jwtService) {
+            this.userModel = userModel;
+            this.jwtService = jwtService;
         }
-        ReservationService_1.prototype.bookHotel = function (reservationData) {
+        AuthService_1.prototype.signUp = function (signUpDto) {
             return __awaiter(this, void 0, void 0, function () {
+                var name, email, password, hashedPassword, user, token;
                 return __generator(this, function (_a) {
-                    // ...
-                    // Add your logic to book the hotel
-                    // ...
-                    return [2 /*return*/, 'Your hotel has been booked successfully!'];
+                    switch (_a.label) {
+                        case 0:
+                            name = signUpDto.name, email = signUpDto.email, password = signUpDto.password;
+                            return [4 /*yield*/, bcrypt.hash(password, 10)];
+                        case 1:
+                            hashedPassword = _a.sent();
+                            return [4 /*yield*/, this.userModel.create({
+                                    name: name,
+                                    email: email,
+                                    password: hashedPassword,
+                                })];
+                        case 2:
+                            user = _a.sent();
+                            token = this.jwtService.sign({ id: user._id });
+                            return [2 /*return*/, { token: token }];
+                    }
                 });
             });
         };
-        return ReservationService_1;
+        AuthService_1.prototype.login = function (loginDto) {
+            return __awaiter(this, void 0, void 0, function () {
+                var email, password, user, isPasswordMatched, token;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            email = loginDto.email, password = loginDto.password;
+                            return [4 /*yield*/, this.userModel.findOne({ email: email })];
+                        case 1:
+                            user = _a.sent();
+                            if (!user) {
+                                throw new common_1.UnauthorizedException('Invalid email or password');
+                            }
+                            return [4 /*yield*/, bcrypt.compare(password, user.password)];
+                        case 2:
+                            isPasswordMatched = _a.sent();
+                            if (!isPasswordMatched) {
+                                throw new common_1.UnauthorizedException('invalid email or password');
+                            }
+                            token = this.jwtService.sign({ id: user._id });
+                            return [2 /*return*/, { token: token }];
+                    }
+                });
+            });
+        };
+        AuthService_1.prototype.logOut = function (request, res) {
+            console.log(request);
+            res.status(200).json({ message: 'Logout successful' });
+        };
+        return AuthService_1;
     }());
-    __setFunctionName(_classThis, "ReservationService");
+    __setFunctionName(_classThis, "AuthService");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        ReservationService = _classThis = _classDescriptor.value;
+        AuthService = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return ReservationService = _classThis;
+    return AuthService = _classThis;
 }();
-exports.ReservationService = ReservationService;
+exports.AuthService = AuthService;

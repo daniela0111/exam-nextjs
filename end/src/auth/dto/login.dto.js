@@ -33,41 +33,31 @@ var __runInitializers = (this && this.__runInitializers) || function (thisArg, i
     }
     return useValue ? value : void 0;
 };
-var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
-    if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-    return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormMiddleware = void 0;
-// form.middleware.ts
-var common_1 = require("@nestjs/common");
-var FormMiddleware = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
-    var _classDescriptor;
-    var _classExtraInitializers = [];
-    var _classThis;
-    var FormMiddleware = _classThis = /** @class */ (function () {
-        function FormMiddleware_1() {
-        }
-        FormMiddleware_1.prototype.use = function (req, res, next) {
-            var _a = req.body, hotelChoice = _a.hotelChoice, name = _a.name, rooms = _a.rooms, checkin = _a.checkin, checkout = _a.checkout;
-            if (!hotelChoice || !name || !rooms || !checkin || !checkout) {
-                return res
-                    .status(400)
-                    .json({ error: 'Bad Request: All fields are required' });
+exports.LoginDto = void 0;
+var class_validator_1 = require("class-validator");
+var LoginDto = function () {
+    var _a;
+    var _instanceExtraInitializers = [];
+    var _email_decorators;
+    var _email_initializers = [];
+    var _password_decorators;
+    var _password_initializers = [];
+    return _a = /** @class */ (function () {
+            function LoginDto() {
+                this.email = (__runInitializers(this, _instanceExtraInitializers), __runInitializers(this, _email_initializers, void 0));
+                this.password = __runInitializers(this, _password_initializers, void 0);
             }
-            next();
-        };
-        return FormMiddleware_1;
-    }());
-    __setFunctionName(_classThis, "FormMiddleware");
-    (function () {
-        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        FormMiddleware = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return FormMiddleware = _classThis;
+            return LoginDto;
+        }()),
+        (function () {
+            var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+            _email_decorators = [(0, class_validator_1.IsNotEmpty)(), (0, class_validator_1.IsEmail)({}, { message: 'Please enter correct email' })];
+            _password_decorators = [(0, class_validator_1.IsNotEmpty)(), (0, class_validator_1.IsString)(), (0, class_validator_1.MinLength)(6)];
+            __esDecorate(null, null, _email_decorators, { kind: "field", name: "email", static: false, private: false, access: { has: function (obj) { return "email" in obj; }, get: function (obj) { return obj.email; }, set: function (obj, value) { obj.email = value; } }, metadata: _metadata }, _email_initializers, _instanceExtraInitializers);
+            __esDecorate(null, null, _password_decorators, { kind: "field", name: "password", static: false, private: false, access: { has: function (obj) { return "password" in obj; }, get: function (obj) { return obj.password; }, set: function (obj, value) { obj.password = value; } }, metadata: _metadata }, _password_initializers, _instanceExtraInitializers);
+            if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
+        })(),
+        _a;
 }();
-exports.FormMiddleware = FormMiddleware;
+exports.LoginDto = LoginDto;

@@ -38,7 +38,7 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReservationService = exports.FormService = exports.AppService = exports.AppController = void 0;
+exports.AppController = void 0;
 var common_1 = require("@nestjs/common");
 var common_2 = require("@nestjs/common");
 var common_3 = require("@nestjs/common");
@@ -58,7 +58,6 @@ var AppController = function () {
             return this.appService.getHello();
         };
         AppController_1.prototype.submitForm = function (data) {
-            // ...
             return 'Form submitted successfully';
         };
         return AppController_1;
@@ -78,70 +77,3 @@ var AppController = function () {
     return AppController = _classThis;
 }();
 exports.AppController = AppController;
-var AppService = function () {
-    var _classDecorators = [Injectable()];
-    var _classDescriptor;
-    var _classExtraInitializers = [];
-    var _classThis;
-    var AppService = _classThis = /** @class */ (function () {
-        function AppService_1() {
-        }
-        AppService_1.prototype.getHello = function () {
-            return 'Hello World!';
-        };
-        return AppService_1;
-    }());
-    __setFunctionName(_classThis, "AppService");
-    (function () {
-        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        AppService = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return AppService = _classThis;
-}();
-exports.AppService = AppService;
-var FormService = function () {
-    var _classDecorators = [Injectable()];
-    var _classDescriptor;
-    var _classExtraInitializers = [];
-    var _classThis;
-    var FormService = _classThis = /** @class */ (function () {
-        function FormService_1() {
-        }
-        return FormService_1;
-    }());
-    __setFunctionName(_classThis, "FormService");
-    (function () {
-        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        FormService = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return FormService = _classThis;
-}();
-exports.FormService = FormService;
-var ReservationService = function () {
-    var _classDecorators = [Injectable()];
-    var _classDescriptor;
-    var _classExtraInitializers = [];
-    var _classThis;
-    var ReservationService = _classThis = /** @class */ (function () {
-        function ReservationService_1() {
-        }
-        return ReservationService_1;
-    }());
-    __setFunctionName(_classThis, "ReservationService");
-    (function () {
-        var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        ReservationService = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return ReservationService = _classThis;
-}();
-exports.ReservationService = ReservationService;
-// Other services, controllers, etc. should also have the correct imports and decorators.

@@ -38,34 +38,53 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
     return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormService = void 0;
-// form.service.ts
+exports.AuthModule = void 0;
 var common_1 = require("@nestjs/common");
-var FormService = function () {
-    var _classDecorators = [(0, common_1.Injectable)()];
+var auth_controller_1 = require("./auth.controller");
+var auth_service_1 = require("./auth.service");
+var mongoose_1 = require("@nestjs/mongoose");
+var jwt_1 = require("@nestjs/jwt");
+var passport_1 = require("@nestjs/passport");
+var config_1 = require("@nestjs/config");
+var user_shema_1 = require("./schemas/user.shema");
+var jwt_strategy_1 = require("./jwt.strategy");
+var AuthModule = function () {
+    var _classDecorators = [(0, common_1.Module)({
+            imports: [
+                mongoose_1.MongooseModule.forFeature([{ name: "User", schema: user_shema_1.UserSchema }]),
+                passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
+                jwt_1.JwtModule.registerAsync({
+                    inject: [config_1.ConfigService],
+                    useFactory: function (config) {
+                        return {
+                            secret: config.get('JWT_SECRET'),
+                            signOptions: {
+                                expiresIn: '60s',
+                            },
+                        };
+                    }
+                }),
+            ],
+            controllers: [auth_controller_1.AuthController],
+            providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
+            exports: [jwt_strategy_1.JwtStrategy, passport_1.PassportModule]
+        })];
     var _classDescriptor;
     var _classExtraInitializers = [];
     var _classThis;
-    var FormService = _classThis = /** @class */ (function () {
-        function FormService_1() {
+    var AuthModule = _classThis = /** @class */ (function () {
+        function AuthModule_1() {
         }
-        FormService_1.prototype.processForm = function (data) {
-            // Perform operations with the data here
-            // For example, you can call other services, save data to the database, etc.
-            console.log('Processing form data:', data);
-            // Return the processed data
-            return data;
-        };
-        return FormService_1;
+        return AuthModule_1;
     }());
-    __setFunctionName(_classThis, "FormService");
+    __setFunctionName(_classThis, "AuthModule");
     (function () {
         var _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
         __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        FormService = _classThis = _classDescriptor.value;
+        AuthModule = _classThis = _classDescriptor.value;
         if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         __runInitializers(_classThis, _classExtraInitializers);
     })();
-    return FormService = _classThis;
+    return AuthModule = _classThis;
 }();
-exports.FormService = FormService;
+exports.AuthModule = AuthModule;
