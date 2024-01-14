@@ -46,7 +46,6 @@ const BookingForm = ({ locations }) => {
       const updatedReservations = await getAllReservations();
       setReservations(updatedReservations);
 
-      // Optionally, you can update the UI or navigate to a different page
     } catch (error) {
       console.error('Error creating reservation:', error);
       // Handle the error as needed

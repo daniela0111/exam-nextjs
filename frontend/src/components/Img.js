@@ -11,11 +11,10 @@ const Img = () => {
           layout="fill"
           objectFit="cover"
           className={ImgStyle.lazyLoadedImage}
-          sizes="(max-width: 600px) 100vw, 600px"  // Přidejte tuto část pro určení velikosti obrázku
+          sizes="(max-width: 600px) 100vw, 600px" 
         />
       </div>
       <div className={ImgStyle.content}>
-        {/* Vaš obsah stránky zde */}
       </div>
     </div>
   );

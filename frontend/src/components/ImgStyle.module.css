@@ -33,5 +33,4 @@
 .content {
     position: relative;
     z-index: 1;
-    /* Přidejte tuto vlastnost, aby byl obsah umístěn před obrázkem */
 }
